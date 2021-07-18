@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>student_view_header</title>
+</head>
+<body>
+<nav th:fragment="student_view_header" class="navbar navbar-light bg-white justify-content-sm-between align-items-center">
+
+        <ul class="nav align-items-center">
+            <li th:if="${#httpServletRequest.requestURI eq '/students'}" class="nav-item">
+                <a class="btn btn-info" th:href="@{/courses}">To Courses</a>
+            </li>
+            <li th:unless="${#httpServletRequest.requestURI eq '/students'}" class="nav-item">
+                <a class="btn btn-success" th:href="@{/students}">Back to Students</a>
+            </li>
+        </ul>
+
+        <div class="nav align-items-center">
+            <form th:replace="fragments/student_search_form :: student_search_form"></form>
+        </div>
+
+
+
+
+</nav>
+
+</body>
+</html>

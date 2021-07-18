@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}" />
+    <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script defer th:src="@{/js/script.js}"></script>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <meta charset="UTF-8">
+    <title>Update Course</title>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navigation"></nav>
+<div class="container">
+    <div class="card mt-4 mb-3 border-primary">
+        <h4 class="bg-light text-primary card-header">Register Course:</h4>
+        <nav class="navbar navbar-light bg-white justify-content-sm-between align-items-center">
+            <ul class="nav align-items-center">
+                <li class="nav-item">
+                    <a class="btn btn-success" th:href="@{/courses/{id}(id=${form.id})}">Abort</a>
+                </li>
+            </ul>
+            <div class="nav align-items-center">
+                <form th:replace="fragments/course_search_form :: course_search_form"></form>
+            </div>
+        </nav>
+        <div class="card-body">
+            <form th:action="@{/courses/{id}/update (id=${form.id})}" method="post" th:object="${form}">
+                <input type="hidden" id="id" name="id" th:field="*{id}" th:value="${form.id}"/>
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Course name:</span>
+                            </div>
+                            <input class="form-control" type="text" id="courseName" name="courseName" placeholder="Enter a name for the course..."  th:field="*{courseName}" th:value="${form.courseName}"/>
+                        </div>
+                        <div th:if="${#fields.hasErrors('courseName')}">
+                            <ul class="p-0">
+                                <li  th:each="err : ${#fields.errors('courseName')}">
+                                    <span class="form-error" th:text="${err}"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-sm-6 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Start date:</span>
+                            </div>
+                            <input class="form-control" type="date" id="startDate" name="startDate" th:field="*{startDate}" th:value="${form.startDate}"/>
+                        </div>
+                        <div th:if="${#fields.hasErrors('startDate')}">
+                            <ul class="p-0">
+                                <li th:each="err : ${#fields.errors('startDate')}">
+                                    <span class="form-error" th:text="${err}"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Week Duration:</span>
+                            </div>
+                            <input class="form-control" type="number" id="weekDuration" name="weekDuration" placeholder="Enter duration in weeks" th:field="*{weekDuration}" th:value="${form.weekDuration}"/>
+                        </div>
+                        <div th:if="${#fields.hasErrors('weekDuration')}">
+                            <ul class="p-0">
+                                <li th:each="err : ${#fields.errors('weekDuration')}">
+                                    <span class="form-error" th:text="${err}"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

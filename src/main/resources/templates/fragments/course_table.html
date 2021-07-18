@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Table</title>
+</head>
+<body>
+<table class="table" th:fragment="course_table(courses)">
+    <thead>
+        <tr>
+            <th scope="col">Course name</th>
+            <th scope="col">Start date</th>
+            <th scope="col">Week duration</th>
+            <th scope="col"># of Students</th>
+            <th scope="col">Details:</th>
+            <th scope="col">Update:</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="course : ${courses}">
+            <td><span th:text="${course.courseName}"></span></td>
+            <td><span th:text="${course.startDate}"></span></td>
+            <td><span th:text="${course.weekDuration}"></span></td>
+            <td><span th:text="${course.students.size()}"></span></td>
+            <td><a class="btn btn-outline-info btn-sm" th:href="@{/courses/{id} (id = ${course.id})}">Course Details</a></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

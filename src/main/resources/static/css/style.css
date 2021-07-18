@@ -1,0 +1,41 @@
+
+.input-group>.input-group-prepend {
+    flex: 0 0 20%;
+}
+.input-group .input-group-text {
+    width: 100%;
+}
+
+.form-error{
+    text-align: left;
+    display: flex;
+    color: red;
+    font-size: small;
+    font-style: italic;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.btn .btn-danger{
+    background-color: red; !important;
+}
+
+.navbar-brand img{
+    border-radius: 3px;
+    height: 62px;
+}
+
+.frame{
+    height: 200px;
+    width: 160px;
+    border-radius: 5%;
+}
+
+.frame img{
+    height: 200px;
+    width: 160px;
+    border-radius: 5%;
+
+}

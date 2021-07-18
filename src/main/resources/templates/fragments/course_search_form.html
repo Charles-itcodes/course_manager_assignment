@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <title>course_search_form</title>
+</head>
+<body>
+<form th:fragment="course_search_form" class="form-inline" th:action="@{/courses}" method="get">
+    <div class="form-group">
+        <select class="form-control mr-3" id="type" name="type" onchange="updateSearchCriteria(this.options[this.selectedIndex])">
+            <option value="name" selected>Name</option>
+            <option value="courseStartBefore">Date before</option>
+            <option value="courseStartAfter">Date after</option>
+        </select>
+        <input class="form-control" name="value" id="value" placeholder=""/>
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+
+</form>
+
+</body>
+</html>

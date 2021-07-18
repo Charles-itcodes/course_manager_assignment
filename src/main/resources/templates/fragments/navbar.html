@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>navigation</title>
+</head>
+<body>
+    <nav th:fragment="navigation" class="navbar navbar-light bg-white justify-content-sm-between">
+            <h1 class="text-primary font-weight-light">School Manager</h1>
+
+            <ul class="nav">
+                <li class="nav-item text-info ml-5">
+                    <a class="nav-link" href="#" th:href="@{/index}">Home</a>
+                </li>
+                <li class="nav-item text-info ml-5">
+                    <a class="nav-link" href="#" th:href="@{/students}">Students</a>
+                </li>
+                <li class="nav-item text-info ml-5" >
+                    <a class="nav-link" href="#" th:href="@{/courses}">Courses</a>
+                </li>
+            </ul>
+    </nav>
+</body>
+</html>

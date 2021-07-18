@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>alert</title>
+</head>
+<body>
+<div th:fragment="search_alert(message)" class="alert alert-danger alert-dismissible">
+    <button class="close" type="button" data-dismiss="alert">
+        <span>&times;</span>
+    </button>
+    <strong>Alert </strong> <span th:text="${message}"></span>
+</div>
+</body>
+</html>

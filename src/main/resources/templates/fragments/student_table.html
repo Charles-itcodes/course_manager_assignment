@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Table</title>
+</head>
+<body>
+<table class="table" th:fragment="student_table(students)">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="student : ${students}">
+            <td><span th:text="${student.name}"></span></td>
+            <td><span th:text="${student.email}"></span></td>
+            <td><a class="btn btn-outline-info btn-sm" th:href="@{/students/{id}(id = ${student.id})}">Student Details</a></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

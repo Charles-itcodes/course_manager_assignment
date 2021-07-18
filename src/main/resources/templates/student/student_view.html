@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}" />
+    <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script defer th:src="@{/js/script.js}"></script>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <meta charset="UTF-8">
+    <title>Student view</title>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navigation"></nav>
+<div class="container">
+    <div class="card mt-4 mb-3 border-primary">
+        <h4 class="bg-light text-primary card-header" th:text="${student.name}"></h4>
+        <div th:replace="fragments/student_view_header :: student_view_header"></div>
+        <div class="card-body">
+            <h5 class="card-header mb-2">Student profile:</h5>
+            <div class="d-md-flex flex-row mb-3">
+                <div class="col-md-2 bg-light shadow-sm" >
+                    <span>Email:</span>
+                </div>
+                <div class="col-md-10 border border-light shadow-sm">
+                    <span th:text="${student.email}"></span>
+                </div>
+            </div>
+            <div class="d-md-flex flex-row mb-3">
+                <div class="col-md-2 bg-light shadow-sm" >
+                    <span>Full name:</span>
+                </div>
+                <div class="col-md-10 border border-light shadow-sm">
+                    <span th:text="${student.name}"></span>
+                </div>
+            </div>
+            <div class="d-md-flex flex-column mb-3">
+                <div class="col-md-12 bg-light shadow-sm" >
+                    <span>Address:</span>
+                </div>
+                <div class="col-md-12 border border-light shadow-sm">
+                    <span th:utext="${student.address}"></span>
+                </div>
+            </div>
+
+            <div class="d-md-flex flex-row mb-3">
+                <a class="btn btn-outline-primary mr-3" th:href="@{/students/{id}/update (id = ${student.id})}">Update</a>
+                <form th:action="@{/students/{id}/delete (id = ${student.id})}" method="post">
+                    <button class="btn btn-outline-danger" type="submit">Delete</button>
+                </form>
+            </div>
+
+            <h6 class="card-header mb-2">Enrolled courses:</h6>
+            <div th:if="${courses == null || courses.isEmpty()}">
+                <span>Not enrolled to any courses yet</span>
+            </div>
+            <div th:unless="${courses == null || courses.isEmpty()}">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Course name</th>
+                        <th scope="col">Start date</th>
+                        <th scope="col">Week duration</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="course : ${courses}">
+                        <td><span th:text="${course.courseName}"></span></td>
+                        <td><span th:text="${course.startDate}"></span></td>
+                        <td><span th:text="${course.weekDuration}"></span></td>
+                        <td style="width: 100px">
+                            <form th:action="@{/courses/{id}/unregister (id = ${course.id}, studentId = ${student.id} , origin='student')}" method="post">
+                                <button class="btn btn-danger" type="submit">Unregister</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
